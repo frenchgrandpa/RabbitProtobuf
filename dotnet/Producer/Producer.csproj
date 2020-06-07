@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Grpc.AspNetCore" Version="2.27.0" />
+        <PackageReference Include="Grpc" Version="2.27.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Protobuf Include="../protos/events.proto" GrpcServices="none" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Properties\launchSettings.json" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\RabbitProtobuf\RabbitProtobuf.csproj" />
+    </ItemGroup>
+
+</Project>

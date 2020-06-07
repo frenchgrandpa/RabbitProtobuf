@@ -1,0 +1,17 @@
+﻿syntax = "proto3";
+package Messages;
+
+
+message DownloadImagesRequest {
+    repeated ImageData imageData = 1;
+}
+
+message ImageData {
+    int32 appId = 1;
+    string name = 2;
+    string url = 3;
+}
+
+message DownloadImagesResponse {
+
+}
