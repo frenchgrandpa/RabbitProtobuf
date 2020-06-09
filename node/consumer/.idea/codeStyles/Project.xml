@@ -1,0 +1,18 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <option name="LINE_SEPARATOR" value="&#10;" />
+    <JSCodeStyleSettings version="0">
+      <option name="FORCE_QUOTE_STYlE" value="true" />
+      <option name="ENFORCE_TRAILING_COMMA" value="Remove" />
+    </JSCodeStyleSettings>
+    <TypeScriptCodeStyleSettings version="0">
+      <option name="BLANK_LINES_AROUND_FUNCTION" value="3" />
+    </TypeScriptCodeStyleSettings>
+    <codeStyleSettings language="TypeScript">
+      <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
+      <option name="BLANK_LINES_AROUND_CLASS" value="2" />
+      <option name="BLANK_LINES_AROUND_METHOD" value="3" />
+      <option name="BLANK_LINES_AROUND_METHOD_IN_INTERFACE" value="3" />
+    </codeStyleSettings>
+  </code_scheme>
+</component>
