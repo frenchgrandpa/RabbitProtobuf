@@ -1,0 +1,5 @@
+{
+  "extends": [
+    "@tradeit-gg/eslint-config"
+  ]
+}

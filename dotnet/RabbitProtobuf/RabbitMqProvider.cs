@@ -20,7 +20,7 @@ namespace RabbitProtobuf {
             connection = factory.CreateConnection();
 
             Channel = connection.CreateModel();
-            Channel.ExchangeDeclare(ExchangeName, "direct");
+            Channel.ExchangeDeclare(ExchangeName, "direct", autoDelete: false, durable: true);
         }
 
 

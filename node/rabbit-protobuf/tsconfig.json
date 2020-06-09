@@ -1,0 +1,16 @@
+{
+  "extends": "./node_modules/@tradeit-gg/tsconfig/tsconfig",
+  "compilerOptions": {
+    
+    "outDir": "lib"
+  },
+  "include": [
+    "src/*.ts",
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
+
+
