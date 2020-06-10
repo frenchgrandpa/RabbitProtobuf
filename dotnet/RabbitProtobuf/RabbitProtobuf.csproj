@@ -13,6 +13,10 @@
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
+    
+    <PropertyGroup>
+        <DefineConstants>JETBRAINS_ANNOTATIONS</DefineConstants>
+    </PropertyGroup>
 
     <ItemGroup>
       <Compile Update="MessageQueueConsumer.cs">
@@ -25,7 +29,7 @@
 
     <PropertyGroup>
         <PackageId>RabbitProtobuf</PackageId>
-        <Version>0.2.0</Version>
+        <Version>0.2.1</Version>
         <Authors>French Grandpa</Authors>
         <Company>Tradeit</Company>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
