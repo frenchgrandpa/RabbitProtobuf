@@ -23,4 +23,13 @@
       </Compile>
     </ItemGroup>
 
+    <PropertyGroup>
+        <PackageId>RabbitProtobuf</PackageId>
+        <Version>0.1.0</Version>
+        <Authors>French Grandpa</Authors>
+        <Company>Tradeit</Company>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/FrenchGrandpa/RabbitProtobuf.git</RepositoryUrl>
+    </PropertyGroup>
+
 </Project>
