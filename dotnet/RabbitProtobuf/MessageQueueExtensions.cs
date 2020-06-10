@@ -27,8 +27,11 @@ namespace RabbitProtobuf {
             this IServiceCollection services,
             string host = "localhost",
             string username = "guest",
-            string password = "guest"
+            string password = "guest",
+            Action<QueueOptions> configureQueueOptions = null
         ) {
+            services.AddOptions<QueueOptions>().Configure(configureQueueOptions ?? (o => { }));
+
             services.TryAddSingleton(sp => new RabbitMqProvider(host, username, password));
             services.AddSingleton<IMessageQueueConsumer, MessageQueueConsumer>();
 

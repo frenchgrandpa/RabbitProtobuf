@@ -21,12 +21,15 @@ namespace RabbitProtobuf {
 
             Channel = connection.CreateModel();
             Channel.ExchangeDeclare(ExchangeName, "direct", autoDelete: false, durable: true);
-            Channel.CreateBasicProperties().Persistent = true;
+
+            Properties = Channel.CreateBasicProperties();
+            Properties.Persistent = true;
         }
 
 
 
         public IModel Channel { get; }
+        public IBasicProperties Properties { get; }
         public string ExchangeName { get; } = "exchange";
 
 

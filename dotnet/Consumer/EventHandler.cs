@@ -12,14 +12,7 @@ namespace Consumer {
         public async Task TestAsync(ImageData d) {
             Console.WriteLine(DateTime.Now);
             await Task.Delay(1000);
-        }
-
-
-
-        [Event]
-        public async Task TestAsync2(ImageData d) {
             Console.WriteLine(DateTime.Now);
-            await Task.Delay(1000);
         }
 
     }

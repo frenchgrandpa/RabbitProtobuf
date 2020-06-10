@@ -25,7 +25,8 @@ namespace RabbitProtobuf {
             rabbitMqProvider.Channel.BasicPublish(
                 rabbitMqProvider.ExchangeName,
                 eventNameStr,
-                body: message.ToByteArray()
+                rabbitMqProvider.Properties,
+                message.ToByteArray()
             );
 
             logger.LogDebug("Emitted {eventName} event", eventNameStr);

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Google.Protobuf;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -24,11 +25,18 @@ namespace RabbitProtobuf {
             RabbitMqProvider rabbitMqProvider,
             // ReSharper disable once SuggestBaseTypeForParameter
             ILogger<MessageQueueConsumer> logger,
+            IOptions<QueueOptions> queueOptionsMonitor,
             IServiceProvider sp
         ) {
             this.rabbitMqProvider = rabbitMqProvider;
 
-            queueName = rabbitMqProvider.Channel.QueueDeclare(durable: true, autoDelete: false, exclusive: true).QueueName;
+            var queueOptions = queueOptionsMonitor.Value;
+            queueName = rabbitMqProvider.Channel.QueueDeclare(
+                queueOptions.QueueName,
+                queueOptions.Durable,
+                queueOptions.Exclusive,
+                queueOptions.AutoDelete
+            ).QueueName;
 
             var handlers = bindHandlers();
             var consumer = new AsyncEventingBasicConsumer(rabbitMqProvider.Channel);
