@@ -2,6 +2,7 @@ import {messageQueuePublisher, rabbitProtobuf} from "rabbit-protobuf";
 
 import {ImageData} from "../gen/events_pb";
 
+
 (async () => {
     await rabbitProtobuf.initAsync({
         username: "user",

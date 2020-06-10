@@ -15,8 +15,8 @@ if [ -z "$2" ]
     exit 1
 fi
 
-DIR_FILE_PATH=$1
-FILE_PATH=("$DIR_FILE_PATH"/*.proto)
+IN_DIR=$1
+FILE_PATH=("$IN_DIR"/*.proto)
 OUT_DIR=$2
 
 rm -rf "$OUT_DIR"
@@ -28,7 +28,7 @@ mkdir -p "$OUT_DIR"
   --js_out=import_style=commonjs,binary:"$OUT_DIR" \
   --ts_out="$OUT_DIR" \
   --grpc_out="$OUT_DIR" \
-  -I "$DIR_FILE_PATH" \
+  -I "$IN_DIR" \
   "${FILE_PATH[@]}"
 
-node "$DIR"/add-message-metadata "$OUT_DIR"
+node "$DIR"/generate-message-metadata-and-handler "$IN_DIR" "$OUT_DIR"

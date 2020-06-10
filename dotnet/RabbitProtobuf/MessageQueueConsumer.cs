@@ -29,7 +29,6 @@ namespace RabbitProtobuf {
             this.rabbitMqProvider = rabbitMqProvider;
 
             queueName = rabbitMqProvider.Channel.QueueDeclare(durable: true, autoDelete: false, exclusive: true).QueueName;
-            rabbitMqProvider.Channel.CreateBasicProperties().Persistent = true;
 
             var handlers = bindHandlers();
             var consumer = new AsyncEventingBasicConsumer(rabbitMqProvider.Channel);

@@ -17,7 +17,7 @@
   ],
   "bin": {
     "rabbit-protobuf": "build/build-protos.sh",
-    "add-message-metadata": "build/add-message-metadata.js"
+    "generate-message-metadata-and-handler": "build/generate-message-metadata-and-handler.js"
   },
   "peerDependencies": {
     "google-protobuf": "^3.12.2",

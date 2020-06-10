@@ -6,4 +6,16 @@ message ImageData {
     int32 appId = 1;
     string name = 2;
     string url = 3;
+    message ImageData2 {
+        int32 appId = 1;
+        string name = 2;
+        string url = 3;
+    }
+
+}
+
+message ImageData3 {
+    int32 appId = 1;
+    string name = 2;
+    string url = 3;
 }
