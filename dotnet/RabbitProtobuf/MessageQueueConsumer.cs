@@ -43,7 +43,7 @@ namespace RabbitProtobuf {
 
             consumer.Received += async (sender, @event) => {
                 try {
-                    logger.LogDebug("Received event {eventName}", @event.RoutingKey);
+                    logger.LogInformation("Received event {eventName}", @event.RoutingKey);
 
                     using var scope = sp.CreateScope();
 
@@ -63,7 +63,7 @@ namespace RabbitProtobuf {
 
                     rabbitMqProvider.Channel.BasicAck(@event.DeliveryTag, false);
 
-                    logger.LogDebug("Handled event {eventName}", @event.RoutingKey);
+                    logger.LogInformation("Handled event {eventName}", @event.RoutingKey);
                 }
                 catch (Exception e) {
                     logger.LogError(
