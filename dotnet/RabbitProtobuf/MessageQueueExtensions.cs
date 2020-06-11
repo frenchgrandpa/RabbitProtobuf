@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -48,7 +47,7 @@ namespace RabbitProtobuf {
 
 
 
-        public static IEnumerable<Type> GetAllInheritors(this Type type) {
+        internal static IEnumerable<Type> GetAllInheritors(this Type type) {
             return AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(t => t.GetTypes())
                 .Where(p => type.IsAssignableFrom(p) && p.IsClass);
