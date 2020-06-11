@@ -29,7 +29,7 @@ namespace RabbitProtobuf {
                 message.ToByteArray()
             );
 
-            logger.LogInformation("Emitted {eventName} event", eventNameStr);
+            logger.LogDebug("Emitted {eventName} event", eventNameStr);
         }
 
     }
