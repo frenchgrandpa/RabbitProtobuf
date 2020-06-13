@@ -1,11 +1,11 @@
 import RabbitMqProvider from "./RabbitMqProvider";
-import EventHandlerBase from "./EventHandlerBase";
+import {eventMap} from "./Event";
 
 
 class MessageQueueConsumer {
 
     // noinspection JSUnusedGlobalSymbols
-    public async initAsync(eventHandler: EventHandlerBase, eventMap: {[eventName: string]: string}): Promise<void> {
+    public async initAsync(): Promise<void> {
         const queue = await RabbitMqProvider.channel.assertQueue(undefined as unknown as string, {
             durable: true,
             autoDelete: false,
@@ -16,24 +16,20 @@ class MessageQueueConsumer {
             await RabbitMqProvider.channel.bindQueue(queue.queue, RabbitMqProvider.exchangeName, eventName);
         }
 
-        await RabbitMqProvider.channel.consume(queue.queue, (message) => {
-            if (!message) {
-                return;
-            }
-            const methodName = eventMap[message.fields.routingKey];
-            if (!methodName) {
-                return;
-            }
-            const handler = (eventHandler as any)[methodName];
-            if (!handler) {
+        await RabbitMqProvider.channel.consume(queue.queue, (event) => {
+            if (!event) {
                 return;
             }
 
-            console.debug(`Received event ${message.fields.routingKey}`);
+            console.debug(`Received event ${event.fields.routingKey}`);
 
-            handler(message.content);
+            const mapping = eventMap[event.fields.routingKey];
+            const message = mapping.MessageClass.deserializeBinary(event.content);
+            const promises = mapping.handlers.map(h => h(message));
 
-            console.debug(`Handled event ${message.fields.routingKey}`);
+            Promise.all(promises);
+
+            console.debug(`Handled event ${event.fields.routingKey}`);
         });
     }
 

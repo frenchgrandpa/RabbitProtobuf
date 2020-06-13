@@ -31,4 +31,4 @@ mkdir -p "$OUT_DIR"
   -I "$IN_DIR" \
   "${FILE_PATH[@]}"
 
-node "$DIR"/generate-message-metadata-and-handler "$IN_DIR" "$OUT_DIR"
+node "$DIR"/generate-message-metadata-and-handler "$OUT_DIR"

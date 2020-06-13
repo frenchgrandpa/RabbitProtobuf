@@ -1,16 +1,15 @@
 /* eslint-disable */
 
-import {messageQueueConsumer, rabbitProtobuf} from "rabbit-protobuf";
+import {messageQueueConsumer, rabbitProtobuf, Event} from "rabbit-protobuf";
 
-import {EventHandler, Binary} from "../gen/EventHandler";
-import {ImageData, ImageData3} from "../gen/events_pb";
+import {ImageData} from "../gen/events_pb";
 
 (async () => {
     await rabbitProtobuf.initAsync({
         username: "user",
         password: "pass"
     });
-    await messageQueueConsumer.initAsync(new EventH(), require("../gen/EventMap.json"));
+    await messageQueueConsumer.initAsync();
 
     await sleep(100000);
 
@@ -23,22 +22,17 @@ import {ImageData, ImageData3} from "../gen/events_pb";
     });
 
 
-class EventH implements EventHandler {
+class EventH {
 
-    async onImageDataAsync(message: Binary<ImageData>): Promise<void> {
-        console.log(ImageData.deserializeBinary(message).toObject())
+    @Event(ImageData)
+    async onImageDataAsync(message: ImageData): Promise<void> {
+        console.log("onImageDataAsync")
+        console.log(message.toObject())
     }
-
-
-
-    onImageDataImageData2Async(message: Binary<ImageData.ImageData2>): Promise<void> {
-        throw new Error("Method not implemented.");
-    }
-
-
-
-    onImageData3Async(message: Binary<ImageData3>): Promise<void> {
-        throw new Error("Method not implemented.");
+    @Event(ImageData)
+    async onImageDataAsync2(message: ImageData): Promise<void> {
+        console.log("onImageDataAsync2")
+        console.log(message)
     }
 
 }
