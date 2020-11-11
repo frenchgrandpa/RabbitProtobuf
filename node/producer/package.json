@@ -1,7 +1,7 @@
 {
   "name": "producer",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -15,7 +15,6 @@
   "files": [
     "lib"
   ],
-  "peerDependencies": {},
   "devDependencies": {
     "@tradeit-gg/eslint-config": "^1.3.11",
     "@tradeit-gg/tsconfig": "^1.3.11",
