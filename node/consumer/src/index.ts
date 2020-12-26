@@ -25,12 +25,12 @@ import {ImageData} from "../gen/events_pb";
 class EventH {
 
     @Event(ImageData)
-    async onImageDataAsync(message: ImageData): Promise<void> {
+    async onImageDataAsync(message: ImageData, routingKey: string): Promise<void> {
         console.log("onImageDataAsync")
         console.log(message.toObject())
     }
     @Event(ImageData)
-    async onImageDataAsync2(message: ImageData): Promise<void> {
+    async onImageDataAsync2(message: ImageData, routingKey: string): Promise<void> {
         console.log("onImageDataAsync2")
         console.log(message)
     }
