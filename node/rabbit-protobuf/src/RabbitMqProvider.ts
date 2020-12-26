@@ -1,5 +1,4 @@
 import * as rabbitMq from "amqplib";
-import set = Reflect.set;
 
 
 interface Settings {

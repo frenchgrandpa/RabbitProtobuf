@@ -2,14 +2,22 @@ import RabbitMqProvider from "./RabbitMqProvider";
 import {eventMap} from "./Event";
 
 
+interface MessageQueueConsumerSettings {
+    queueName?: string;
+    durable?: boolean; //False
+    exclusive?: boolean; //True
+    autoDelete?: boolean; //True
+}
+
 class MessageQueueConsumer {
 
     // noinspection JSUnusedGlobalSymbols
-    public async initAsync(): Promise<void> {
-        const queue = await RabbitMqProvider.channel.assertQueue(undefined as unknown as string, {
-            durable: true,
-            autoDelete: false,
-            exclusive: true
+    public async initAsync(settings?: MessageQueueConsumerSettings): Promise<void> {
+        settings = settings || {};
+        const queue = await RabbitMqProvider.channel.assertQueue(settings.queueName!, {
+            durable: settings.durable,
+            exclusive: settings.exclusive === undefined ? true : settings.exclusive,
+            autoDelete: settings.autoDelete === undefined ? true : settings.autoDelete
         });
 
         for (const eventName of Object.keys(eventMap)) {
