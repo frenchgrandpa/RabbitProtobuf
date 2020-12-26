@@ -14,7 +14,7 @@ interface Deserializable<T extends Message> {
 }
 
 
-type Handler<T extends Message> = (message: T) => Promise<void>;
+type Handler<T extends Message> = (message: T, routingKey: string) => Promise<void>;
 
 export default function Event<T extends Message, O>(MessageClass: Deserializable<T>): (target: any, propertyKey: string, descriptor: TypedPropertyDescriptor<Handler<T>>) => void {
     return function (

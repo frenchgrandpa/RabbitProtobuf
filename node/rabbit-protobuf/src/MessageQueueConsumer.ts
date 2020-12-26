@@ -25,7 +25,7 @@ class MessageQueueConsumer {
 
             const mapping = eventMap[event.fields.routingKey];
             const message = mapping.MessageClass.deserializeBinary(event.content);
-            const promises = mapping.handlers.map(h => h(message));
+            const promises = mapping.handlers.map(h => h(message, event.fields.routingKey));
 
             Promise.all(promises);
 
